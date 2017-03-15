@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{D1A78410-CBA4-1F2E-52F1-0DD0BEE4C870}") = "Feddex", "Assembly-CSharp.csproj", "{7629A920-8747-39E4-83B4-A53386435D8E}"
 EndProject
+Project("{D1A78410-CBA4-1F2E-52F1-0DD0BEE4C870}") = "Feddex", "Assembly-CSharp-Editor.csproj", "{9130D24C-D994-9ED9-486F-D3A1CA90ECCF}"
+EndProject
 Project("{D1A78410-CBA4-1F2E-52F1-0DD0BEE4C870}") = "Feddex", "Assembly-UnityScript.unityproj", "{E0ECBF2E-252B-BE85-34C7-169E91B3B595}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{7629A920-8747-39E4-83B4-A53386435D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7629A920-8747-39E4-83B4-A53386435D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7629A920-8747-39E4-83B4-A53386435D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9130D24C-D994-9ED9-486F-D3A1CA90ECCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9130D24C-D994-9ED9-486F-D3A1CA90ECCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9130D24C-D994-9ED9-486F-D3A1CA90ECCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9130D24C-D994-9ED9-486F-D3A1CA90ECCF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0ECBF2E-252B-BE85-34C7-169E91B3B595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0ECBF2E-252B-BE85-34C7-169E91B3B595}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0ECBF2E-252B-BE85-34C7-169E91B3B595}.Release|Any CPU.ActiveCfg = Release|Any CPU
