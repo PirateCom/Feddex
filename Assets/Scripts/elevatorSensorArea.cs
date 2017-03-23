@@ -54,7 +54,7 @@ public class elevatorSensorArea : MonoBehaviour {
 
 	}
 	void OnTriggerStay (Collider other){
-		other.GetComponent<Rigidbody>().AddForce(Vector3.up * hoverForce, ForceMode.Acceleration);
+		//other.GetComponent<Rigidbody>().AddForce(Vector3.up * hoverForce, ForceMode.Acceleration);
 	}
 
 	void OnTriggerExit(Collider other){
