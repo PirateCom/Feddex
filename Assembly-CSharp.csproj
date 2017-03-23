@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\elevatorLevel.cs" />
+     <Compile Include="Assets\Scripts\elevatorSensorArea.cs" />
      <Compile Include="Assets\Scripts\goToMenuScreen.cs" />
      <Compile Include="Assets\Scripts\leftElevatorDoor.cs" />
      <Compile Include="Assets\Scripts\rightElevatorDoor.cs" />
