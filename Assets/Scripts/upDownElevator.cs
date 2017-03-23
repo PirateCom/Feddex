@@ -24,6 +24,8 @@ public class upDownElevator : MonoBehaviour
 	KeywordRecognizer keywordRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
+    private AudioSource source;
+
     // Use this for initialization
     void Start()
     {
@@ -62,6 +64,11 @@ public class upDownElevator : MonoBehaviour
 		}
     }
 
+    void Awake()
+    {
+        source = GetComponent<AudioSource>(); 
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -69,18 +76,21 @@ public class upDownElevator : MonoBehaviour
         {
             moveDown = false;
             moveUp = true;
+            source.PlayDelayed(2);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             moveUp = false;
             moveDown = false;
+            source.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
             moveUp = false;
             moveDown = true;
+            source.PlayDelayed(2);
         }
 
         if (moveUp == true)
@@ -89,6 +99,7 @@ public class upDownElevator : MonoBehaviour
             {
                 transform.Translate(Vector3.up * speed, Space.Self);
                 distance = distance + Vector3.up.y * speed;
+                source.Stop();
             }
         }
         else if (moveDown == true)
@@ -97,6 +108,7 @@ public class upDownElevator : MonoBehaviour
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
                 distance = distance + Vector3.down.y * speed;
+                source.Stop();
             }
         }
     }
@@ -106,6 +118,7 @@ public class upDownElevator : MonoBehaviour
         print("UP");
         moveDown = false;
         moveUp = true;
+        source.PlayDelayed(2);
     }
 
     void StopCalled()
@@ -113,6 +126,7 @@ public class upDownElevator : MonoBehaviour
         print("STOP");
         moveDown = false;
         moveUp = false;
+        source.Stop();
     }
 
     void DownCalled()
@@ -120,6 +134,7 @@ public class upDownElevator : MonoBehaviour
         print("DOWN");
         moveDown = true;
         moveUp = false;
+        source.PlayDelayed(2);
     }
 
 }
