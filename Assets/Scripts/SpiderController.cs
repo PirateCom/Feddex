@@ -7,7 +7,7 @@ public class SpiderController : MonoBehaviour {
 	private float startTime;
 	private float journeyLength;
 	public Transform startMarker;
-	public Vector3 endMarker = new Vector3(3.275F, 0.01F, -1.86F);
+	private Vector3 endMarker = new Vector3(3.275F, -0.45F, -1.86F);
 
 	void Start() {
 		print (transform.position);
