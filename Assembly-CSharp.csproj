@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\elevatorLevel.cs" />
      <Compile Include="Assets\Scripts\elevatorSensorArea.cs" />
      <Compile Include="Assets\Scripts\goToMenuScreen.cs" />
+     <Compile Include="Assets\Scripts\ground.cs" />
      <Compile Include="Assets\Scripts\leftElevatorDoor.cs" />
      <Compile Include="Assets\Scripts\rightElevatorDoor.cs" />
      <Compile Include="Assets\Scripts\rotateButton.cs" />
