@@ -14,7 +14,7 @@ public class upDownElevator : MonoBehaviour
     private float distance = 0;
 
     private Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
-    private Vector3 endMarkerDown = new Vector3(0F, 0F, 0F);
+    private Vector3 endMarkerDown = new Vector3(0F, 0.1F, 0F);
 
     // Moving flags
     private bool moveUp = false;
