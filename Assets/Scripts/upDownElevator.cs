@@ -14,7 +14,7 @@ public class upDownElevator : MonoBehaviour
     private float distance = 0;
 
     public Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
-    public Vector3 endMarkerDown = new Vector3(0F, 0F, 0F);
+    public Vector3 endMarkerDown = new Vector3(0F, -2.5F, 0F);
 
     // Moving flags
     private bool moveUp = false;
@@ -93,7 +93,7 @@ public class upDownElevator : MonoBehaviour
         }
         else if (moveDown == true)
         {
-            if (distance > endMarkerDown.y)
+            if (distance > endMarkerDown.y - 1)
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
                 distance = distance + Vector3.down.y * speed;
