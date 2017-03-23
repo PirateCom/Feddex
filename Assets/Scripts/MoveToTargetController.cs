@@ -18,8 +18,8 @@ public class MoveToTargetController : MonoBehaviour {
 	void Update () {
 //		transform.position += transform.forward * speed;
 
-		if (Vector3.Distance (transform.position, waypoint) < 1) {
-			GetComponent<Animator> ().Stop ();	
+		if (Vector3.Distance (transform.position, waypoint) < 2) {
+			gameObject.GetComponent<Animator> ().Stop ();	
 		} else {
 			transform.position += transform.forward * speed;
 		}
