@@ -55,3 +55,7 @@ D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.xml
 D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.Analytics.xml
 D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.HoloLens.xml
 D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.VR.xml
+D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.Advertisements.dll
+D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.Purchasing.dll
+D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.Advertisements.xml
+D:\Unity\GitFeddex\Feddex\Temp\bin\Debug\UnityEngine.Purchasing.xml
