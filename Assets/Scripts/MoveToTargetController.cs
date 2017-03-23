@@ -2,36 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToTargetController : MonoBehaviour {
-	public float speed = 0.05F;
+public class MoveToTargetController : MonoBehaviour
+{
+  public float speed = 0.05F;
 
 	private Vector3 waypoint;
-	private Vector3 velocity = Vector3.zero;
 
 	public GameObject target;
 
 	void Start () {
-		waypoint = target.transform.position;
-		waypoint.y = 0.0f;
+		setTarget(target);
 	}
 
 	void Update () {
 //		transform.position += transform.forward * speed;
 
-		if (Vector3.Distance (transform.position, waypoint) < 2) {
-			gameObject.GetComponent<Animator> ().Stop ();	
-		} else {
-			transform.position += transform.forward * speed;
+		if (Vector3.Distance (transform.position, waypoint) < 5) {
+		  Vector3 pointBehind = waypoint - (target.transform.forward * 3f);
+		  pointBehind.y = 0.0f;
+		  waypoint = pointBehind - (target.transform.right * (Random.Range(0, 10) % 2 == 0 ? -1 : 1));
+		  rotateToTarget(5f);
+		  transform.position += transform.forward * speed * 2;
 		}
+
+	  transform.position += transform.forward * speed;
+
 
 		if  (Vector3.Angle(transform.forward, waypoint - transform.position) > 2) {
 			rotateToTarget ();
 		}
 	}
 
-	void rotateToTarget() {
+  public void setTarget(GameObject tgt)
+  {
+    target = tgt;
+    waypoint = target.transform.position;
+    waypoint.y = 0.0f;
+  }
+
+	void rotateToTarget(float spd = 1) {
 		Quaternion targetRotation = Quaternion.LookRotation (waypoint - transform.position);
-		float str = Mathf.Min (Time.deltaTime, 1);
+		float str = Mathf.Min (spd * Time.deltaTime, 1);
 
 		transform.rotation = Quaternion.Lerp (transform.rotation, targetRotation, str);
 	}
