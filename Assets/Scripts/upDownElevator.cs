@@ -66,7 +66,7 @@ public class upDownElevator : MonoBehaviour
 
     void Awake()
     {
-        source = GetComponent<AudioSource>(); 
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class upDownElevator : MonoBehaviour
         {
             moveDown = false;
             moveUp = true;
-            source.PlayDelayed(2);
+            source.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -90,7 +90,7 @@ public class upDownElevator : MonoBehaviour
         {
             moveUp = false;
             moveDown = true;
-            source.PlayDelayed(2);
+            source.PlayDelayed(1);
         }
 
         if (moveUp == true)
@@ -99,6 +99,9 @@ public class upDownElevator : MonoBehaviour
             {
                 transform.Translate(Vector3.up * speed, Space.Self);
                 distance = distance + Vector3.up.y * speed;
+            }
+            else
+            {
                 source.Stop();
             }
         }
@@ -107,7 +110,10 @@ public class upDownElevator : MonoBehaviour
             if (distance > endMarkerDown.y - 1)
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
-                distance = distance + Vector3.down.y * speed;
+                distance = distance + Vector3.down.y * speed;               
+            }
+            else
+            {
                 source.Stop();
             }
         }
@@ -118,7 +124,7 @@ public class upDownElevator : MonoBehaviour
         print("UP");
         moveDown = false;
         moveUp = true;
-        source.PlayDelayed(2);
+        source.PlayDelayed(1);
     }
 
     void StopCalled()
@@ -134,7 +140,7 @@ public class upDownElevator : MonoBehaviour
         print("DOWN");
         moveDown = true;
         moveUp = false;
-        source.PlayDelayed(2);
+        source.PlayDelayed(1);
     }
 
 }
