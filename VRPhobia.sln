@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRPhobia", "VRPhobia.csproj", "{1BD9C5FF-5C7F-0B13-A5D3-D771747B28A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRPhobia.Editor", "VRPhobia.Editor.csproj", "{3FA02782-B2AC-4848-4E5C-CDD9DEB1B2DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BD9C5FF-5C7F-0B13-A5D3-D771747B28A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD9C5FF-5C7F-0B13-A5D3-D771747B28A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD9C5FF-5C7F-0B13-A5D3-D771747B28A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD9C5FF-5C7F-0B13-A5D3-D771747B28A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA02782-B2AC-4848-4E5C-CDD9DEB1B2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA02782-B2AC-4848-4E5C-CDD9DEB1B2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA02782-B2AC-4848-4E5C-CDD9DEB1B2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA02782-B2AC-4848-4E5C-CDD9DEB1B2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
