@@ -10,26 +10,29 @@ public class upDownElevator : MonoBehaviour
 
     //get up down button
     public Button upButton;
-    public float speed = 0.2F;
+    public float speed = 0.02F;
     private float distance = 0;
 
     public Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
-    public Vector3 endMarkerDown = new Vector3(0F, 0.9F, 0F);
+    public Vector3 endMarkerDown = new Vector3(0F, 0F, 0F);
 
     // Moving flags
     private bool moveUp = false;
     private bool moveDown = false;
 
     // Voice Recognition
+	KeywordRecognizer keywordRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     // Use this for initialization
     void Start()
     {
+		print ("START");
         //Create keywords for keyword recognizer
-        keywords.Add("up", () =>
+        keywords.Add("go up", () =>
         {
             // action to be performed when this keyword is spoken
+			print("up added");
             UpCalled();
         });
 
@@ -44,6 +47,19 @@ public class upDownElevator : MonoBehaviour
             // action to be performed when this keyword is spoken
             DownCalled();
         });
+
+		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
+		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+		keywordRecognizer.Start ();
+    }
+
+    void KeywordRecognizer_OnPhraseRecognized (PhraseRecognizedEventArgs args)
+    {
+		System.Action keywordAction;
+
+		if (keywords.TryGetValue(args.text, out keywordAction)) {
+			keywordAction.Invoke ();
+		}
     }
 
     // Update is called once per frame
