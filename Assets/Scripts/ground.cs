@@ -6,38 +6,34 @@ public class ground : MonoBehaviour
 {
 
     private AudioSource source;
-    Vector3 lastPos;
+    float lastPosY;
     public Transform obj; // drag the object to monitor here 
-    float threshold = 0.0f; // minimum displacement to recognize.
+    float threshold = -5f; // minimum displacement to recognize.
     private bool elevatorLeftGround = false;
 
     void Start()
     {
-        lastPos = obj.position;
+        lastPosY = obj.position.y;
     }
 
     void Awake()
     {
         source = GetComponent<AudioSource>();
-        source.volume = 0.2F;
+        source.volume = 0.15F;
         source.Play();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 offset = obj.position - lastPos;
+        float offsetY = obj.position.y - lastPosY;
 
-        lastPos = obj.position;
-
-        if (offset.y > threshold)
+        if (offsetY > threshold && !elevatorLeftGround)
         {
-            elevatorLeftGround = true;
-            
             fadeOut();
         }
-        else if (-0.15> offset.y && offset.y < -0.1 && elevatorLeftGround)
+        else if (offsetY < 10 && elevatorLeftGround)
         {
             fadeIn();
         }
@@ -47,14 +43,27 @@ public class ground : MonoBehaviour
     {
         source.volume -= 0.05F * Time.deltaTime;
         if (source.volume <= 0)
+        {
+            elevatorLeftGround = true;
             source.Stop();
+        }
     }
 
     void fadeIn()
     {
-        if(source.volume<0.3)
+        print("volume" + source.volume);
+        if (source.volume < 0.15)
+        {
             source.volume += 0.05F * Time.deltaTime;
+
+        }
+        else
+        {
+            elevatorLeftGround = false;
+        }
         if (!source.isPlaying)
+        {
             source.Play();
+        }
     }
 }
