@@ -11,14 +11,21 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	KeywordRecognizer keywordRecognizer;
 	public bool lightsFlag = false;
 	public bool leavelFlag = false;
+	public GameObject spotLight;
+	public GameObject bedLight;
+	public GameObject doorLight;
+	public GameObject backRoomLight;
+	public GameObject sideWallLight;
+	const float lightValue = 0.5F;
 
 	// Use this for initialization
 	void Start () {
-		keywords.Add("lights", LightsOn);
+		keywords.Add("lights on", LightsOn);
+		keywords.Add("lights off", LightsOn);
 		keywords.Add("leave", LeaveRoom);
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
-//		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 		keywordRecognizer.Start ();
 
 	}
@@ -27,16 +34,33 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	void Update () {
 		if (leavelFlag == true) {
 			SceneManager.LoadScene ("menu", LoadSceneMode.Single);
-		}	
+		}
+		if (lightsFlag == true) {
+			ChangeLight (spotLight, 0);
+			ChangeLight (bedLight, lightValue);
+			ChangeLight (doorLight, lightValue);
+			ChangeLight (sideWallLight, lightValue);
+			ChangeLight (backRoomLight, lightValue);
+		}
+		if (lightsFlag == false) {
+			ChangeLight (backRoomLight, 0);
+			ChangeLight (sideWallLight, 0);
+			ChangeLight (doorLight, 0);
+			ChangeLight (bedLight, 0);
+			ChangeLight (spotLight, 8F);
+		}
 	}
 
 	void LightsOn() {
 		print ("Let there be lights!");
-		lightsFlag = true;
+		lightsFlag = !lightsFlag;
 	}
 	void LeaveRoom() {
 		print ("Leave the room!");
 		leavelFlag = true;
+	}
+	void ChangeLight(GameObject lightObject, float intensity) {
+		lightObject.GetComponent<Light> ().intensity = intensity;
 	}
 	void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args) {
 		System.Action keywordAction;
