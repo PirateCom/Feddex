@@ -13,36 +13,29 @@ public class upDownElevator : MonoBehaviour
     public float speed = 0.02F;
     private float distance = 0;
 
-<<<<<<< HEAD
+
     private Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
     private Vector3 endMarkerDown = new Vector3(0F, 0.1F, 0F);
-=======
-    public Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
-    public Vector3 endMarkerDown = new Vector3(0F, -2.5F, 0F);
->>>>>>> elevatorSensor
 
     // Moving flags
     private bool moveUp = false;
     private bool moveDown = false;
 
     // Voice Recognition
-	KeywordRecognizer keywordRecognizer;
+    KeywordRecognizer keywordRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-<<<<<<< HEAD
-=======
 
     private AudioSource source;
->>>>>>> elevatorSensor
 
     // Use this for initialization
     void Start()
     {
-		print ("START");
+        print("START");
         //Create keywords for keyword recognizer
         keywords.Add("go up", () =>
         {
             // action to be performed when this keyword is spoken
-			print("up added");
+            print("up added");
             UpCalled();
         });
 
@@ -58,26 +51,25 @@ public class upDownElevator : MonoBehaviour
             DownCalled();
         });
 
-		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
-		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-		keywordRecognizer.Start ();
+        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+        keywordRecognizer.Start();
     }
 
-    void KeywordRecognizer_OnPhraseRecognized (PhraseRecognizedEventArgs args)
+    void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-		System.Action keywordAction;
+        System.Action keywordAction;
 
-		if (keywords.TryGetValue(args.text, out keywordAction)) {
-			keywordAction.Invoke ();
-		}
-<<<<<<< HEAD
-=======
+        if (keywords.TryGetValue(args.text, out keywordAction))
+        {
+            keywordAction.Invoke();
+        }
+
     }
 
     void Awake()
     {
         source = GetComponent<AudioSource>();
->>>>>>> elevatorSensor
     }
 
     // Update is called once per frame
@@ -87,37 +79,8 @@ public class upDownElevator : MonoBehaviour
         {
             moveDown = false;
             moveUp = true;
-<<<<<<< HEAD
-        }
+            source.PlayDelayed(1);
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            moveUp = false;
-            moveDown = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            moveUp = false;
-            moveDown = true;
-        }
-
-        if (moveUp == true)
-        {
-            if (distance < endMarkerUp.y)
-            {
-                transform.Translate(Vector3.up * speed, Space.Self);
-                distance = distance + Vector3.up.y * speed;
-            }
-        }
-        else if (moveDown == true)
-        {
-            if (distance > endMarkerDown.y)
-            {
-                transform.Translate(Vector3.down * speed, Space.Self);
-                distance = distance + Vector3.down.y * speed;
-=======
-            source.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -148,15 +111,14 @@ public class upDownElevator : MonoBehaviour
         }
         else if (moveDown == true)
         {
-            if (distance > endMarkerDown.y - 1)
+            if (distance > endMarkerDown.y)
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
-                distance = distance + Vector3.down.y * speed;               
+                distance = distance + Vector3.down.y * speed;
             }
             else
             {
                 source.Stop();
->>>>>>> elevatorSensor
             }
         }
     }
@@ -166,10 +128,8 @@ public class upDownElevator : MonoBehaviour
         print("UP");
         moveDown = false;
         moveUp = true;
-<<<<<<< HEAD
-=======
         source.PlayDelayed(1);
->>>>>>> elevatorSensor
+
     }
 
     void StopCalled()
@@ -177,10 +137,8 @@ public class upDownElevator : MonoBehaviour
         print("STOP");
         moveDown = false;
         moveUp = false;
-<<<<<<< HEAD
-=======
         source.Stop();
->>>>>>> elevatorSensor
+
     }
 
     void DownCalled()
@@ -188,10 +146,8 @@ public class upDownElevator : MonoBehaviour
         print("DOWN");
         moveDown = true;
         moveUp = false;
-<<<<<<< HEAD
-=======
         source.PlayDelayed(1);
->>>>>>> elevatorSensor
+
     }
 
 }
