@@ -13,6 +13,7 @@ public class upDownElevator : MonoBehaviour
     public float speed = 0.02F;
     private float distance = 0;
 
+
     private Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
     private Vector3 endMarkerDown = new Vector3(0F, 0.1F, 0F);
 
@@ -21,18 +22,20 @@ public class upDownElevator : MonoBehaviour
     private bool moveDown = false;
 
     // Voice Recognition
-	KeywordRecognizer keywordRecognizer;
+    KeywordRecognizer keywordRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+
+    private AudioSource source;
 
     // Use this for initialization
     void Start()
     {
-		print ("START");
+        print("START");
         //Create keywords for keyword recognizer
         keywords.Add("go up", () =>
         {
             // action to be performed when this keyword is spoken
-			print("up added");
+            print("up added");
             UpCalled();
         });
 
@@ -48,18 +51,25 @@ public class upDownElevator : MonoBehaviour
             DownCalled();
         });
 
-		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
-		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-		keywordRecognizer.Start ();
+        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+        keywordRecognizer.Start();
     }
 
-    void KeywordRecognizer_OnPhraseRecognized (PhraseRecognizedEventArgs args)
+    void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-		System.Action keywordAction;
+        System.Action keywordAction;
 
-		if (keywords.TryGetValue(args.text, out keywordAction)) {
-			keywordAction.Invoke ();
-		}
+        if (keywords.TryGetValue(args.text, out keywordAction))
+        {
+            keywordAction.Invoke();
+        }
+
+    }
+
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -69,18 +79,22 @@ public class upDownElevator : MonoBehaviour
         {
             moveDown = false;
             moveUp = true;
+            source.PlayDelayed(1);
+
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             moveUp = false;
             moveDown = false;
+            source.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
             moveUp = false;
             moveDown = true;
+            source.PlayDelayed(1);
         }
 
         if (moveUp == true)
@@ -90,6 +104,10 @@ public class upDownElevator : MonoBehaviour
                 transform.Translate(Vector3.up * speed, Space.Self);
                 distance = distance + Vector3.up.y * speed;
             }
+            else
+            {
+                source.Stop();
+            }
         }
         else if (moveDown == true)
         {
@@ -97,6 +115,10 @@ public class upDownElevator : MonoBehaviour
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
                 distance = distance + Vector3.down.y * speed;
+            }
+            else
+            {
+                source.Stop();
             }
         }
     }
@@ -106,6 +128,8 @@ public class upDownElevator : MonoBehaviour
         print("UP");
         moveDown = false;
         moveUp = true;
+        source.PlayDelayed(1);
+
     }
 
     void StopCalled()
@@ -113,6 +137,8 @@ public class upDownElevator : MonoBehaviour
         print("STOP");
         moveDown = false;
         moveUp = false;
+        source.Stop();
+
     }
 
     void DownCalled()
@@ -120,6 +146,8 @@ public class upDownElevator : MonoBehaviour
         print("DOWN");
         moveDown = true;
         moveUp = false;
+        source.PlayDelayed(1);
+
     }
 
 }
