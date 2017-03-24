@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
@@ -16,7 +17,7 @@ public class BasementVoiceActionsController : MonoBehaviour {
 		keywords.Add("leave", LeaveRoom);
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
-		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+//		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 		keywordRecognizer.Start ();
 
 	}

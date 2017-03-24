@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class MoveToTargetController : MonoBehaviour
 {
+  private Vector3 waypoint;
+  private AudioSource source;
+
   public float speed = 0.05F;
-
-	private Vector3 waypoint;
-
-	public GameObject target;
+  public GameObject target;
 
 	void Start () {
 		setTarget(target);
 	}
+
+  void Awake()
+  {
+    source = GetComponent<AudioSource>();
+    source.Play();
+  }
 
 	void Update () {
 //		transform.position += transform.forward * speed;
