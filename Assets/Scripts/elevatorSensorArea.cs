@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class elevatorSensorArea : MonoBehaviour
 {
@@ -22,10 +25,30 @@ public class elevatorSensorArea : MonoBehaviour
     public AudioSource sourceOpen;
     public AudioSource sourceClose;
 
+	// Voice Recognition
+	KeywordRecognizer keywordRecognizer;
+	Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+
     void Start()
     {
 		sourceOpen.volume = 1F;
 		sourceClose.volume = 1F;
+
+		keywords.Add("open doors", () =>
+			{
+				// action to be performed when this keyword is spoken
+				openDoors();
+			});
+
+		keywords.Add("close doors", () =>
+			{
+				// action to be performed when this keyword is spoken
+				closeDoors();
+			});
+
+		keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+		keywordRecognizer.Start();
     }
 
     // Update is called once per frame
@@ -43,26 +66,25 @@ public class elevatorSensorArea : MonoBehaviour
         rightDoor.transform.localPosition = Vector3.Lerp(startPosRight, endPosRight, Perc);
     }
 
+	void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+	{
+		System.Action keywordAction;
+
+		if (keywords.TryGetValue(args.text, out keywordAction))
+		{
+			keywordAction.Invoke();
+		}
+
+	}
+
 
     void OnTriggerEnter(Collider other)
     {
-
-		print ("test");
+		print ("trigger enter");
 		if (other != player) {
 			return;
 		}
-        endPosLeft = new Vector3(-0.5f, 0f, -1f);
-        startPosLeft = new Vector3(0.5f, 0f, -1f);
-
-        endPosRight = new Vector3(2.5f, 0f, -1f);
-        startPosRight = new Vector3(1.5f, 0f, -1f);
-
-        currentLerpTime = 0;
-
-        sourceOpen.Play();
-
-        // leftDoor.transform.localPosition = new Vector3 (-0.5f, 0f,-1f);
-        // rightDoor.transform.localPosition = new Vector3 (2.5f, 0f, -1f);
+		openDoors ();
 
 
     }
@@ -73,18 +95,42 @@ public class elevatorSensorArea : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        sourceClose.Play();
-        if (currentLerpTime >= lerpTime)
-        {
-            currentLerpTime = lerpTime;
-        }
-
-        startPosLeft = new Vector3(-0.5f, 0f, -1f);
-        endPosLeft = new Vector3(0.5f, 0f, -1f);
-
-        startPosRight = new Vector3(2.5f, 0f, -1f);
-        endPosRight = new Vector3(1.5f, 0f, -1f);
-
-        currentLerpTime = 0;
+		print ("trigger enter");
+		if (other != player) {
+			return;
+		}
+		closeDoors ();
     }
+
+
+	void openDoors() {
+		endPosLeft = new Vector3(-0.5f, 0f, -1f);
+		startPosLeft = new Vector3(0.5f, 0f, -1f);
+
+		endPosRight = new Vector3(2.5f, 0f, -1f);
+		startPosRight = new Vector3(1.5f, 0f, -1f);
+
+		currentLerpTime = 0;
+
+		sourceOpen.Play();
+
+		// leftDoor.transform.localPosition = new Vector3 (-0.5f, 0f,-1f);
+		// rightDoor.transform.localPosition = new Vector3 (2.5f, 0f, -1f);
+	}
+
+	void closeDoors() {
+		sourceClose.Play();
+		if (currentLerpTime >= lerpTime)
+		{
+			currentLerpTime = lerpTime;
+		}
+
+		startPosLeft = new Vector3(-0.5f, 0f, -1f);
+		endPosLeft = new Vector3(0.5f, 0f, -1f);
+
+		startPosRight = new Vector3(2.5f, 0f, -1f);
+		endPosRight = new Vector3(1.5f, 0f, -1f);
+
+		currentLerpTime = 0;
+	}
 }
