@@ -12,7 +12,10 @@ public class MoveToTargetController : MonoBehaviour
   public GameObject target;
 
 	void Start () {
-		setTarget(target);
+	  if (target)
+	  {
+	    setTarget(target);
+	  }
 	}
 
   void Awake()
@@ -22,25 +25,23 @@ public class MoveToTargetController : MonoBehaviour
   }
 
 	void Update () {
-	  if (Vector3.Distance(transform.position, waypoint) < 2)
+	  if (target == null)
 	  {
-	    if (_switchedTarget > 0 && _switchedTarget + 3 < Time.time)
-	    {
-	      Destroy(gameObject);
-	    }
+	    return;
 	  }
-	  if (Vector3.Distance (transform.position, waypoint) < 5) {
 
+	  if (Vector3.Distance(transform.position, waypoint) < 2 && !isSeen())
+	  {
+      Destroy(gameObject);
+      return;
+	  }
+
+	  if (Vector3.Distance (transform.position, waypoint) < 5 && isSeen()) {
 		  Vector3 pointBehind = waypoint - (target.transform.forward * 3f);
 		  pointBehind.y = 0.0f;
 		  waypoint = pointBehind - (target.transform.right * (Random.Range(0, 10) % 2 == 0 ? -1 : 1));
 		  rotateToTarget(5f);
 		  transform.position += transform.forward * speed * 2;
-
-		  if (_switchedTarget == 0f)
-		  {
-		    _switchedTarget = Time.time;
-		  }
 		}
 
 	  transform.position += transform.forward * speed;
@@ -64,4 +65,12 @@ public class MoveToTargetController : MonoBehaviour
 
 		transform.rotation = Quaternion.Lerp (transform.rotation, targetRotation, str);
 	}
+
+  bool isSeen()
+  {
+    Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+    bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+
+    return onScreen;
+  }
 }

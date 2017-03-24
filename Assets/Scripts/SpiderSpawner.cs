@@ -35,14 +35,12 @@ namespace Assets.Scripts
 
     void StartSpawning()
     {
-      _spidersToSpawn = Random.Range(2, 5);
+      _spidersToSpawn = Random.Range(3, 5);
       _spawning = true;
     }
 
     void Update()
     {
-      print(_spiders.Count);
-
       for (int i = 0; i < _spiders.Count; i++)
       {
         var spider = _spiders[i];
@@ -51,21 +49,16 @@ namespace Assets.Scripts
         {
           _spiders.RemoveAt(i);
           _spidersSpawned = _spiders.Count;
-          print(_spiders.Count);
         }
       }
 
-      if (_spawning && _spidersSpawned < _spidersToSpawn)
+      if (_spidersSpawned < _spidersToSpawn)
       {
         if (_lastSpawned + 0.5 < Time.time)
         {
           SpawnSpider();
           _spidersSpawned++;
         }
-      }
-      else
-      {
-        _spawning = false;
       }
     }
 
@@ -74,11 +67,10 @@ namespace Assets.Scripts
       Vector3 spawnPosition = SPAWN_POSITIONS[Random.Range(0, SPAWN_POSITIONS.Length - 1)];
 
       GameObject spider = Instantiate(Prefab, spawnPosition, new Quaternion());
-      spider.GetComponent<MoveToTargetController>().setTarget(
-        GameObject.Find(
-          TARGETS[Random.Range(0, TARGETS.Length - 1)]
-        )
+      GameObject spiderTarget = GameObject.Find(
+        TARGETS[Random.Range(0, TARGETS.Length - 1)]
       );
+      spider.GetComponent<MoveToTargetController>().setTarget(spiderTarget);
 
       _spiders.Add(spider);
 
