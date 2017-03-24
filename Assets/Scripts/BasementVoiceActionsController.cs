@@ -18,8 +18,12 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	public GameObject sideWallLight;
 	const float lightValue = 0.5F;
 
+  private AudioSource source;
+
 	// Use this for initialization
 	void Start () {
+	  source = GetComponent<AudioSource>();
+
 		keywords.Add("lights on", LightsOn);
 		keywords.Add("lights off", LightsOn);
 		keywords.Add("leave", LeaveRoom);
@@ -54,6 +58,8 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	void LightsOn() {
 		print ("Let there be lights!");
 		lightsFlag = !lightsFlag;
+	  print("play");
+	  source.Play ();
 	}
 	void LeaveRoom() {
 		print ("Leave the room!");
