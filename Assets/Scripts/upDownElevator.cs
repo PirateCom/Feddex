@@ -7,15 +7,12 @@ using System.Linq;
 
 public class upDownElevator : MonoBehaviour
 {
-
-    //get up down button
-    public Button upButton;
     public float speed = 0.02F;
     private float distance = 0;
 
 
     private Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
-    private Vector3 endMarkerDown = new Vector3(0F, 0.1F, 0F);
+    private Vector3 endMarkerDown = new Vector3(0F, 0F, 0F);
 
     // Moving flags
     private bool moveUp = false;
@@ -30,7 +27,6 @@ public class upDownElevator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        print("START");
         //Create keywords for keyword recognizer
         keywords.Add("go up", () =>
         {
@@ -45,7 +41,7 @@ public class upDownElevator : MonoBehaviour
             StopCalled();
         });
 
-        keywords.Add("down", () =>
+        keywords.Add("go down", () =>
         {
             // action to be performed when this keyword is spoken
             DownCalled();

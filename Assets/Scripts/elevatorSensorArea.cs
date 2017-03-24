@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class elevatorSensorArea : MonoBehaviour
 {
-
-
     public GameObject leftDoor;
     public GameObject rightDoor;
+	public Collider player;
 
     public float hoverForce = 12f;
 
@@ -25,15 +24,15 @@ public class elevatorSensorArea : MonoBehaviour
 
     void Start()
     {
-		sourceOpen.volume = 0.5F;
-		sourceClose.volume = 0.5F;
+		sourceOpen.volume = 1F;
+		sourceClose.volume = 1F;
     }
 
     // Update is called once per frame
     void Update()
     {
         currentLerpTime += 1;
-		print (currentLerpTime);
+
         if (currentLerpTime >= lerpTime)
         {
             currentLerpTime = lerpTime;
@@ -49,6 +48,9 @@ public class elevatorSensorArea : MonoBehaviour
     {
 
 		print ("test");
+		if (other != player) {
+			return;
+		}
         endPosLeft = new Vector3(-0.5f, 0f, -1f);
         startPosLeft = new Vector3(0.5f, 0f, -1f);
 

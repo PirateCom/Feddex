@@ -8,7 +8,7 @@ public class ground : MonoBehaviour
     private AudioSource source;
     float lastPosY;
     public Transform obj; // drag the object to monitor here 
-    float threshold = -0.5f; // minimum displacement to recognize.
+    float threshold = 0.2f; // minimum displacement to recognize.
 
     private bool elevatorLeftGround = false;
 
@@ -29,19 +29,17 @@ public class ground : MonoBehaviour
     {
 
         float offsetY = obj.position.y - lastPosY;
-
-        if (offsetY > threshold && !elevatorLeftGround)
-        {
-            fadeOut();
-        }
-        else if (offsetY < 10 && elevatorLeftGround)
-        {
-            fadeIn();
-        }
+		if (obj.position.y - lastPosY > 0.1  ) {
+			if (offsetY > threshold && !elevatorLeftGround) {
+				fadeOut ();
+			} else if (offsetY < 10 && elevatorLeftGround) {
+				fadeIn ();
+			}
+		}
     }
 
     void fadeOut()
-    {
+    {		
         source.volume -= 0.05F * Time.deltaTime;
         if (source.volume <= 0)
         {
