@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class BasementVoiceActionsController : MonoBehaviour {
 	Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
@@ -35,5 +36,11 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	void LeaveRoom() {
 		print ("Leave the room!");
 		leavelFlag = true;
+	}
+	void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args) {
+		System.Action keywordAction;
+		if (keywords.TryGetValue (args.text, out keywordAction)) {
+			keywordAction.Invoke();
+		}
 	}
 }
