@@ -9,7 +9,6 @@ public class upDownElevator : MonoBehaviour
 {
 
     //get up down button
-    public Button upButton;
     public float speed = 0.02F;
     private float distance = 0;
 

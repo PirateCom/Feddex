@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AvoidCameraController.cs" />
      <Compile Include="Assets\Scripts\BasementVoiceActionsController.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
+     <Compile Include="Assets\Scripts\ElevatorVoiceController.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MenuVoiceController.cs" />
      <Compile Include="Assets\Scripts\MoveToTargetController.cs" />
