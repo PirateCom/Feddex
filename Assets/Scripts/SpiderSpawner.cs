@@ -17,7 +17,7 @@ namespace Assets.Scripts
 
     public GameObject Prefab;
 
-    private readonly string[] TARGETS = new string[] { "Bed", "wardrobe", "door", "bedside drawers"};
+    private readonly string[] TARGETS = new string[] { "Bed", "wardrobe", "Door", "bedside drawers"};
     private readonly Vector3[] SPAWN_POSITIONS = new Vector3[]
     {
       new Vector3(-17.88f, -0.45f, -6.65f), // under bed
@@ -25,6 +25,8 @@ namespace Assets.Scripts
       new Vector3(16.05f, -0.45f, 11.34f), // under door
       new Vector3(4.53f, -0.45f, 7.25f), // under table
     };
+
+    private List<GameObject> _spiders = new List<GameObject> {};
 
     void Start()
     {
@@ -39,7 +41,21 @@ namespace Assets.Scripts
 
     void Update()
     {
-      if (_spidersSpawned < _spidersToSpawn)
+      print(_spiders.Count);
+
+      for (int i = 0; i < _spiders.Count; i++)
+      {
+        var spider = _spiders[i];
+
+        if (spider == null)
+        {
+          _spiders.RemoveAt(i);
+          _spidersSpawned = _spiders.Count;
+          print(_spiders.Count);
+        }
+      }
+
+      if (_spawning && _spidersSpawned < _spidersToSpawn)
       {
         if (_lastSpawned + 0.5 < Time.time)
         {
@@ -63,6 +79,8 @@ namespace Assets.Scripts
           TARGETS[Random.Range(0, TARGETS.Length - 1)]
         )
       );
+
+      _spiders.Add(spider);
 
       _lastSpawned = Time.time;
     }
