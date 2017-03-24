@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AccelerateWhenSeen.cs" />
      <Compile Include="Assets\Scripts\AvoidCameraController.cs" />
+     <Compile Include="Assets\Scripts\BasementVoiceActionsController.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MoveToTargetController.cs" />
