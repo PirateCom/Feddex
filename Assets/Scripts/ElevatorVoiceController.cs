@@ -13,7 +13,7 @@ public class ElevatorVoiceController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		keywords.Add("leave", LeaveRoom);
+		keywords.Add("back", LeaveRoom);
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;

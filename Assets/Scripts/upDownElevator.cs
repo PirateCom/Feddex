@@ -35,7 +35,7 @@ public class upDownElevator : MonoBehaviour
             UpCalled();
         });
 
-        keywords.Add("stop", () =>
+        keywords.Add("stop now", () =>
         {
             // action to be performed when this keyword is spoken
             StopCalled();

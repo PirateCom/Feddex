@@ -22,7 +22,7 @@ public class BasementVoiceActionsController : MonoBehaviour {
 	void Start () {
 		keywords.Add("lights on", LightsOn);
 		keywords.Add("lights off", LightsOn);
-		keywords.Add("leave", LeaveRoom);
+		keywords.Add("back", LeaveRoom);
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
