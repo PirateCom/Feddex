@@ -13,8 +13,13 @@ public class upDownElevator : MonoBehaviour
     public float speed = 0.02F;
     private float distance = 0;
 
+<<<<<<< HEAD
     private Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
     private Vector3 endMarkerDown = new Vector3(0F, 0.1F, 0F);
+=======
+    public Vector3 endMarkerUp = new Vector3(0F, 69F, 0F);
+    public Vector3 endMarkerDown = new Vector3(0F, -2.5F, 0F);
+>>>>>>> elevatorSensor
 
     // Moving flags
     private bool moveUp = false;
@@ -23,6 +28,11 @@ public class upDownElevator : MonoBehaviour
     // Voice Recognition
 	KeywordRecognizer keywordRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+<<<<<<< HEAD
+=======
+
+    private AudioSource source;
+>>>>>>> elevatorSensor
 
     // Use this for initialization
     void Start()
@@ -60,6 +70,14 @@ public class upDownElevator : MonoBehaviour
 		if (keywords.TryGetValue(args.text, out keywordAction)) {
 			keywordAction.Invoke ();
 		}
+<<<<<<< HEAD
+=======
+    }
+
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
+>>>>>>> elevatorSensor
     }
 
     // Update is called once per frame
@@ -69,6 +87,7 @@ public class upDownElevator : MonoBehaviour
         {
             moveDown = false;
             moveUp = true;
+<<<<<<< HEAD
         }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -97,6 +116,47 @@ public class upDownElevator : MonoBehaviour
             {
                 transform.Translate(Vector3.down * speed, Space.Self);
                 distance = distance + Vector3.down.y * speed;
+=======
+            source.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            moveUp = false;
+            moveDown = false;
+            source.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            moveUp = false;
+            moveDown = true;
+            source.PlayDelayed(1);
+        }
+
+        if (moveUp == true)
+        {
+            if (distance < endMarkerUp.y)
+            {
+                transform.Translate(Vector3.up * speed, Space.Self);
+                distance = distance + Vector3.up.y * speed;
+            }
+            else
+            {
+                source.Stop();
+            }
+        }
+        else if (moveDown == true)
+        {
+            if (distance > endMarkerDown.y - 1)
+            {
+                transform.Translate(Vector3.down * speed, Space.Self);
+                distance = distance + Vector3.down.y * speed;               
+            }
+            else
+            {
+                source.Stop();
+>>>>>>> elevatorSensor
             }
         }
     }
@@ -106,6 +166,10 @@ public class upDownElevator : MonoBehaviour
         print("UP");
         moveDown = false;
         moveUp = true;
+<<<<<<< HEAD
+=======
+        source.PlayDelayed(1);
+>>>>>>> elevatorSensor
     }
 
     void StopCalled()
@@ -113,6 +177,10 @@ public class upDownElevator : MonoBehaviour
         print("STOP");
         moveDown = false;
         moveUp = false;
+<<<<<<< HEAD
+=======
+        source.Stop();
+>>>>>>> elevatorSensor
     }
 
     void DownCalled()
@@ -120,6 +188,10 @@ public class upDownElevator : MonoBehaviour
         print("DOWN");
         moveDown = true;
         moveUp = false;
+<<<<<<< HEAD
+=======
+        source.PlayDelayed(1);
+>>>>>>> elevatorSensor
     }
 
 }

@@ -1,4 +1,5 @@
 Temp/
+<<<<<<< HEAD
 Library/metadata/
 /[Ll]ibrary/
 /[Tt]emp/
@@ -34,3 +35,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+=======
+Library
+Library/metadata/
+>>>>>>> elevatorSensor
