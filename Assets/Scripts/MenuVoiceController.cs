@@ -13,8 +13,8 @@ public class MenuVoiceController : MonoBehaviour {
 	public bool elevatorRoomFlag = false;
 	// Use this for initialization
 	void Start () {
-		keywords.Add("spider", SpiderRoom);
-		keywords.Add("elevator", ElevatorRoom);
+		keywords.Add("right", SpiderRoom);
+		keywords.Add("left", ElevatorRoom);
 
 		keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
 		keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
