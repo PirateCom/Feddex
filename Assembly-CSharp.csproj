@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AccelerateWhenSeen.cs" />
      <Compile Include="Assets\Scripts\AvoidCameraController.cs" />
      <Compile Include="Assets\Scripts\BasementVoiceActionsController.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
@@ -55,6 +54,8 @@
      <Compile Include="Assets\Scripts\MenuVoiceController.cs" />
      <Compile Include="Assets\Scripts\MoveToTargetController.cs" />
      <Compile Include="Assets\Scripts\SpiderController.cs" />
+     <Compile Include="Assets\Scripts\SpiderSpawner.cs" />
+     <Compile Include="Assets\Scripts\TargetPlayerWhenSeen.cs" />
      <Compile Include="Assets\Scripts\elevatorLevel.cs" />
      <Compile Include="Assets\Scripts\elevatorSensorArea.cs" />
      <Compile Include="Assets\Scripts\goToMenuScreen.cs" />
