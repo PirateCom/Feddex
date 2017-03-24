@@ -10,7 +10,6 @@ public class elevatorSensorArea : MonoBehaviour
     public GameObject rightDoor;
 
     public float hoverForce = 12f;
-    private float distance = 30f;
 
     private float lerpTime = 50;
     private float currentLerpTime = 50;
@@ -26,23 +25,15 @@ public class elevatorSensorArea : MonoBehaviour
 
     void Start()
     {
-    }
-
-    void Awake()
-    {
-        var sourceOpen = GetComponent<AudioSource>();
-        var sourceClose = GetComponent<AudioSource>();
-       
-        sourceOpen = GetComponent<AudioSource>();
-        sourceClose = GetComponent<AudioSource>();
-        sourceOpen.volume = 0.2F;
-        sourceClose.volume = 0.2F;
+		sourceOpen.volume = 0.5F;
+		sourceClose.volume = 0.5F;
     }
 
     // Update is called once per frame
     void Update()
     {
         currentLerpTime += 1;
+		print (currentLerpTime);
         if (currentLerpTime >= lerpTime)
         {
             currentLerpTime = lerpTime;
@@ -57,7 +48,7 @@ public class elevatorSensorArea : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-
+		print ("test");
         endPosLeft = new Vector3(-0.5f, 0f, -1f);
         startPosLeft = new Vector3(0.5f, 0f, -1f);
 
@@ -81,7 +72,6 @@ public class elevatorSensorArea : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         sourceClose.Play();
-        currentLerpTime = Time.deltaTime;
         if (currentLerpTime >= lerpTime)
         {
             currentLerpTime = lerpTime;
